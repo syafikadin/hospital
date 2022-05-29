@@ -1,0 +1,24 @@
+{
+  "patients": [
+    {
+      "name": "Saipul",
+      "address": "Jombang",
+      "id": 1
+    },
+    {
+      "name": "Syafik",
+      "address": "Kepanjen",
+      "id": 2
+    },
+    {
+      "name": "Fadwa",
+      "address": "Tangerang",
+      "id": 3
+    },
+    {
+      "name": "Dara",
+      "address": "Mojokerto",
+      "id": 4
+    }
+  ]
+}

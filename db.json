@@ -6,19 +6,14 @@
       "id": 1
     },
     {
-      "name": "Syafik",
-      "address": "Kepanjen",
+      "name": "Dara",
+      "address": "Mojokerto",
       "id": 2
     },
     {
-      "name": "Fadwa",
-      "address": "Tangerang",
+      "name": "Syafik",
+      "address": "Kepanjen",
       "id": 3
-    },
-    {
-      "name": "Dara",
-      "address": "Mojokerto",
-      "id": 4
     }
   ]
 }

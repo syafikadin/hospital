@@ -1,34 +1,132 @@
 <template>
-    <div>
+    <b-container>
         <div>
             <h1>Data Pasien</h1>
             <!-- <button @click="load()">Load</button><br><br> -->
-            <button @click="changeAddMode()">Tambah Pasien</button><br><br>
-            <table border="1" class="center">
-                <th>ID</th>
-                <th>Nama</th>
-                <th>Alamat</th>
-                <th colspan="2">Aksi</th>
-                <tr v-for="patient in patients" :key="patient.id">
-                    <td width="50px">
-                        {{ patient.id }}
-                    </td>
-                    <td width="100px">
-                        {{ patient.name }}
-                    </td>
-                    <td width="200px">
-                        {{ patient.address }}
-                    </td>
-                    <td width="70px">
-                        <button @click="changeEditMode(patient.id)">Edit</button>
-                    </td>
-                    <td width="70px">
-                        <button @click="deletePatient(patient.id)">Delete</button>
-                    </td>
-                </tr>
-            </table>
+            <div>
+                <b-button v-b-modal.add-modal-prevent-closing variant="primary">Tambah Pasien</b-button><br><br>
+
+                <!-- Modal Add Patient -->
+                <b-modal
+                id="add-modal-prevent-closing"
+                ref="modal"
+                title="Form Tambah Pasien"
+                @show="resetModal"
+                @hidden="resetModal"
+                @ok="handleOkAddPatient"
+                >
+                <form ref="form" @submit.stop.prevent="handleSubmit()">
+
+                    <b-form-group
+                    label="Name"
+                    label-for="name-input"
+                    invalid-feedback="Name is required"
+                    :state="nameState"
+                    >
+                    <b-form-input
+                        id="name-input"
+                        v-model="form.name"
+                        :state="nameState"
+                        required
+                    ></b-form-input>
+                    </b-form-group>
+
+                    <b-form-group
+                    label="Address"
+                    label-for="address-input"
+                    invalid-feedback="Address is required"
+                    :state="addressState"
+                    >
+                    <b-form-input
+                        id="address-input"
+                        v-model="form.address"
+                        :state="addressState"
+                        required
+                    ></b-form-input>
+                    </b-form-group>
+
+                </form>
+                </b-modal>
+            </div>
+
+            <b-table-simple hover small caption-top responsive class="center">
+                <b-thead>
+                    <b-th>ID</b-th>
+                    <b-th>Nama</b-th>
+                    <b-th>Alamat</b-th>
+                    <b-th colspan="2">Aksi</b-th>
+                </b-thead>
+                <b-tbody>
+                    <b-tr v-for="patient in patients" :key="patient.id">
+                        <b-td width="50px">
+                            {{ patient.id }}
+                        </b-td>
+                        <b-td width="100px">
+                            {{ patient.name }}
+                        </b-td>
+                        <b-td width="200px">
+                            {{ patient.address }}
+                        </b-td>
+                        <b-td width="70px">
+                            <b-button @click="getIndex(patient.id)" v-b-modal.edit-modal-prevent-closing variant="success">Edit</b-button>
+                        </b-td>
+                        <b-td width="70px">
+                            <b-button @click="deletePatient(patient.id)" variant="danger">Delete</b-button>
+                        </b-td>
+                    </b-tr>
+                </b-tbody>
+            </b-table-simple>
         </div>
-        <div v-if="this.addMode">
+
+        <!-- Modal Edit / Update Patient -->
+        <div>
+            <b-modal
+                id="edit-modal-prevent-closing"
+                ref="modal"
+                title="Form Edit Pasien"
+                @show="resetModal"
+                @hidden="resetModal"
+                @ok="handleOkEditPatient"
+                >
+                <form ref="form" @submit.stop.prevent="handleSubmit()">
+
+                    <b-form-group
+                    label="Name"
+                    label-for="name-input"
+                    invalid-feedback="Name is required"
+                    :state="nameState"
+                    >
+                    <b-form-input
+                        id="name-input"
+                        v-model="editForm.name"
+                        :state="nameState"
+                        required
+                    ></b-form-input>
+                    </b-form-group>
+
+                    <b-form-group
+                    label="Address"
+                    label-for="address-input"
+                    invalid-feedback="Address is required"
+                    :state="addressState"
+                    >
+                    <b-form-input
+                        id="address-input"
+                        v-model="editForm.address"
+                        :state="addressState"
+                        required
+                    ></b-form-input>
+                    </b-form-group>
+
+                </form>
+                </b-modal>
+
+                <p>Index Number : {{ indexNumber }}</p>
+                <p>Edit Form Name : {{ editForm.name }}</p>
+                <p>Edit Form Address : {{ editForm.address }}</p>
+        </div>
+
+        <!-- <div v-if="this.addMode">
             <h1>Tambah Pasien</h1>
             <form @submit.prevent="addPatient()">
                 <table border="1" class="center">
@@ -38,12 +136,13 @@
                     <tr>
                         <input type="text" placeholder="Alamat Pasien" v-model="form.address">
                     </tr>
-                    <button type="submit">Submit</button>
-                    <button @click="cancelAddMode()">Cancel</button>
+                    <b-button type="submit">Submit</b-button>
+                    <b-button @click="cancelAddMode()">Cancel</b-button>
                 </table>
             </form>
-        </div>
-        <div v-if="this.editMode">
+        </div> -->
+
+        <!-- <div v-if="this.editMode">
             <h1>Edit Pasien</h1>
             <table border="1" class="center">
                 <tr>
@@ -52,11 +151,12 @@
                 <tr>
                     <input type="text" placeholder="Edit Alamat Pasien" v-model="editForm.address">
                 </tr>
-                <button @click="updatePatient()">Submit</button>
-                <button @click="cancelEditMode()">Cancel</button>
+                <b-button @click="updatePatient()">Submit</b-button>
+                <b-button @click="cancelEditMode()">Cancel</b-button>
             </table>
-        </div>
-    </div>
+        </div> -->
+
+    </b-container>
 </template>
 
 <script>
@@ -68,7 +168,6 @@ export default {
     data() {
         return {
             patients: [],
-            addMode: false,
             editMode: false,
             indexNumber: '',
             form : {
@@ -78,7 +177,9 @@ export default {
             editForm: {
                 name: '',
                 address: ''
-            }
+            },
+            nameState: null,
+            addressState: null,
         }
     },
 
@@ -92,23 +193,8 @@ export default {
             this.patients = response.data
         },
 
-        changeAddMode() {
-            if(this.editMode === true) {
-                this.editMode = false
-            }
-            this.addMode = true
-        },
-
-        changeEditMode(indexId) {
-            if (this.addMode === true) {
-                this.addMode = false
-            }
-            this.editMode = true
+        getIndex(indexId) {
             this.indexNumber = indexId
-        },
-
-        cancelAddMode() {
-            this.addMode = false
         },
 
         cancelEditMode() {
@@ -127,12 +213,13 @@ export default {
         },
 
         async deletePatient(indexId) {
-            confirm('Apakah Anda Akan Menghapus Data Ini?')
-            try {
-                await axios.delete(`http://localhost:3000/patients/` + indexId)
-                this.load()
-            } catch (error) {
-                console.log(error)
+            if (confirm('Apakah Anda Akan Menghapus Data Ini?') == true) {
+                try {
+                    await axios.delete(`http://localhost:3000/patients/` + indexId)
+                    this.load()
+                } catch (error) {
+                    console.log(error)
+                }
             }
         },
 
@@ -149,6 +236,61 @@ export default {
                 console.log(error)
             }
         },
+
+        checkFormValidity() {
+            const valid = this.$refs.form.checkValidity()
+            this.nameState = valid
+            this.addressState = valid
+            return valid
+        },
+
+        resetModal() {
+            this.form.name = ''
+            this.form.address = ''
+            this.editForm.name = ''
+            this.editForm.address = ''
+            this.nameState = null
+            this.addressState = null
+        },
+
+        handleOkAddPatient(bvModalEvent) {
+            // Prevent modal from closing
+            bvModalEvent.preventDefault()
+            // Trigger submit handler
+            this.handleSubmitAddPatient()
+        },
+
+        handleOkEditPatient(bvModalEvent) {
+            // Prevent modal from closing
+            bvModalEvent.preventDefault()
+            // Trigger submit handler
+            this.handleSubmitEditPatient()
+        },
+
+        handleSubmitAddPatient() {
+            // Exit when the form isn't valid
+            if (!this.checkFormValidity()) {
+                return
+            }
+            this.addPatient()
+            // Hide the modal manually
+            this.$nextTick(() => {
+                this.$bvModal.hide('add-modal-prevent-closing')
+            })
+        },
+
+        handleSubmitEditPatient() {
+            // Exit when the form isn't valid
+            if (!this.checkFormValidity()) {
+                return
+            }
+            this.updatePatient()
+            this.indexNumber = ''
+            // Hide the modal manually
+            this.$nextTick(() => {
+                this.$bvModal.hide('edit-modal-prevent-closing')
+            })
+        }
 
     }
 }

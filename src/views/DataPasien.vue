@@ -126,36 +126,6 @@
                 <p>Edit Form Address : {{ editForm.address }}</p>
         </div>
 
-        <!-- <div v-if="this.addMode">
-            <h1>Tambah Pasien</h1>
-            <form @submit.prevent="addPatient()">
-                <table border="1" class="center">
-                    <tr>
-                        <input type="text" placeholder="Nama Pasien" v-model="form.name">
-                    </tr>
-                    <tr>
-                        <input type="text" placeholder="Alamat Pasien" v-model="form.address">
-                    </tr>
-                    <b-button type="submit">Submit</b-button>
-                    <b-button @click="cancelAddMode()">Cancel</b-button>
-                </table>
-            </form>
-        </div> -->
-
-        <!-- <div v-if="this.editMode">
-            <h1>Edit Pasien</h1>
-            <table border="1" class="center">
-                <tr>
-                    <input type="text" placeholder="Edit Nama Pasien" v-model="editForm.name">
-                </tr>
-                <tr>
-                    <input type="text" placeholder="Edit Alamat Pasien" v-model="editForm.address">
-                </tr>
-                <b-button @click="updatePatient()">Submit</b-button>
-                <b-button @click="cancelEditMode()">Cancel</b-button>
-            </table>
-        </div> -->
-
     </b-container>
 </template>
 

@@ -10,12 +10,13 @@
                 <b-modal
                 id="add-modal-prevent-closing"
                 ref="modal"
-                title="Form Tambah Pasien"
+                title="Tambah Data Pasien Rawat Jalan"
                 @show="resetModal"
                 @hidden="resetModal"
                 @ok="handleOkAddPatient"
+                size="xl"
                 >
-                <form ref="form" @submit.stop.prevent="handleSubmit()">
+                <form ref="form" @submit.stop.prevent="handleSubmitAddPatient()">
 
                     <b-form-group
                     label="Name"
@@ -54,24 +55,45 @@
                     <b-th>ID</b-th>
                     <b-th>Nama</b-th>
                     <b-th>Alamat</b-th>
-                    <b-th colspan="2">Aksi</b-th>
+                    <b-th>Jenis Kelamin</b-th>
+                    <b-th>No.Telepon</b-th>
+                    <b-th>Tempat Lahir</b-th>
+                    <b-th>Tanggal Lahir</b-th>
+                    <b-th>Jenis Penyakit</b-th>
+                    <b-th>Jenis Penanganan</b-th>
+                    <b-th>Aksi</b-th>
                 </b-thead>
                 <b-tbody>
                     <b-tr v-for="patient in patients" :key="patient.id">
-                        <b-td width="50px">
+                        <b-td>
                             {{ patient.id }}
                         </b-td>
-                        <b-td width="100px">
+                        <b-td>
                             {{ patient.name }}
                         </b-td>
-                        <b-td width="200px">
+                        <b-td>
                             {{ patient.address }}
                         </b-td>
-                        <b-td width="70px">
-                            <b-button @click="getIndex(patient.id)" v-b-modal.edit-modal-prevent-closing variant="success">Edit</b-button>
+                        <b-td>
+                            {{ patient.gender }}
                         </b-td>
-                        <b-td width="70px">
-                            <b-button @click="deletePatient(patient.id)" variant="danger">Delete</b-button>
+                        <b-td>
+                            {{ patient.phone }}
+                        </b-td>
+                        <b-td>
+                            {{ patient.placeOfBirth }}
+                        </b-td>
+                        <b-td>
+                            {{ patient.dateOfBirth }}
+                        </b-td>
+                        <b-td>
+                            {{ patient.disease }}
+                        </b-td>
+                        <b-td>
+                            {{ patient.handling }}
+                        </b-td>
+                        <b-td>
+                            <b-button @click="getIndex(patient.id)" v-b-modal.edit-modal-prevent-closing variant="success">Edit</b-button>
                         </b-td>
                     </b-tr>
                 </b-tbody>
@@ -87,8 +109,9 @@
                 @show="resetModal"
                 @hidden="resetModal"
                 @ok="handleOkEditPatient"
-                >
-                <form ref="form" @submit.stop.prevent="handleSubmit()">
+                size="xl"
+            >
+                <form ref="form" @submit.stop.prevent="handleSubmitEditPatient()">
 
                     <b-form-group
                     label="Name"
@@ -119,11 +142,17 @@
                     </b-form-group>
 
                 </form>
+                <!-- <b-button class="w-100 mt-5" @click="deletePatient(indexNumber)" variant="danger">Delete</b-button> -->
+                <template #modal-footer="{ ok }">
+                    <b-button size="lg" variant="danger" @click="deletePatient(indexNumber)">
+                        Delete
+                    </b-button>
+                    <b-button size="lg" variant="success" @click="ok()">
+                        Simpan
+                    </b-button>
+                </template>
                 </b-modal>
 
-                <p>Index Number : {{ indexNumber }}</p>
-                <p>Edit Form Name : {{ editForm.name }}</p>
-                <p>Edit Form Address : {{ editForm.address }}</p>
         </div>
 
     </b-container>
@@ -134,7 +163,6 @@ import axios from 'axios'
 
 export default {
     name: "DataPasienPage",
-
     data() {
         return {
             patients: [],
@@ -167,10 +195,6 @@ export default {
             this.indexNumber = indexId
         },
 
-        cancelEditMode() {
-            this.editMode = false
-        },
-
         async addPatient() {
             try {
                 await axios.post(`http://localhost:3000/patients`, this.form)
@@ -191,6 +215,9 @@ export default {
                     console.log(error)
                 }
             }
+            this.$nextTick(() => {
+                this.$bvModal.hide('edit-modal-prevent-closing')
+            })
         },
 
         async updatePatient() {

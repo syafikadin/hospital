@@ -1,19 +1,52 @@
 {
   "patients": [
     {
-      "name": "Saipul",
-      "address": "Jombang",
-      "id": 1
+      "id": 1,
+      "nik": "3507131606000004",
+      "name": "Mochammad Syafiuddin",
+      "address": "Jl. Sultan Agung 46 RT.06 RW.03 Kepanjen Malang",
+      "gender": "L",
+      "phone": "089698289699",
+      "placeOfBirth": "New York",
+      "dateOfBirth": "18/2/70",
+      "disease": "Jantung",
+      "handling": "Rawat Inap"
     },
     {
-      "name": "Dara",
-      "address": "Mojokerto",
-      "id": 2
+      "id": 2,
+      "nik": "3507131606000004",
+      "name": "Ainun Rizki Abdullah",
+      "address": "4517 Washington Ave. Manchester, Kentucky 39495",
+      "gender": "L",
+      "phone": "(406) 555-0120",
+      "placeOfBirth": "New York",
+      "dateOfBirth": "18/2/70",
+      "disease": "Jantung",
+      "handling": "Rawat Inap"
     },
     {
-      "name": "Syafik",
-      "address": "Kepanjen",
-      "id": 3
+      "id": 3,
+      "nik": "3507131606000004",
+      "name": "Jane Cooper",
+      "address": "4517 Washington Ave. Manchester, Kentucky 39495",
+      "gender": "L",
+      "phone": "(406) 555-0120",
+      "placeOfBirth": "New York",
+      "dateOfBirth": "18/2/70",
+      "disease": "Jantung",
+      "handling": "Rawat Inap"
+    },
+    {
+      "id": 1,
+      "nik": "3507131606000004",
+      "name": "Mochammad Syafiuddin",
+      "address": "Jl. Sultan Agung 46 RT.06 RW.03 Kepanjen Malang",
+      "gender": "L",
+      "phone": "089698289699",
+      "placeOfBirth": "New York",
+      "dateOfBirth": "18/2/70",
+      "disease": "Jantung",
+      "handling": "Rawat Inap"
     }
   ]
 }

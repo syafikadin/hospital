@@ -1,52 +1,136 @@
 {
   "patients": [
     {
-      "id": 1,
-      "nik": "3507131606000004",
-      "name": "Mochammad Syafiuddin",
-      "address": "Jl. Sultan Agung 46 RT.06 RW.03 Kepanjen Malang",
-      "gender": "L",
-      "phone": "089698289699",
-      "placeOfBirth": "New York",
-      "dateOfBirth": "18/2/70",
-      "disease": "Jantung",
-      "handling": "Rawat Inap"
-    },
-    {
-      "id": 2,
-      "nik": "3507131606000004",
-      "name": "Ainun Rizki Abdullah",
-      "address": "4517 Washington Ave. Manchester, Kentucky 39495",
-      "gender": "L",
-      "phone": "(406) 555-0120",
-      "placeOfBirth": "New York",
-      "dateOfBirth": "18/2/70",
-      "disease": "Jantung",
-      "handling": "Rawat Inap"
-    },
-    {
       "id": 3,
       "nik": "3507131606000004",
       "name": "Jane Cooper",
       "address": "4517 Washington Ave. Manchester, Kentucky 39495",
+      "gender": "P",
+      "phone": "(406) 555-0120",
+      "placeOfBirth": "New York",
+      "dateOfBirth": "2022-06-15",
+      "disease": "Gigi",
+      "handling": "Rawat Jalan"
+    },
+    {
+      "id": 4,
+      "nik": "3507131606000004",
+      "name": "Maria Imaculata",
+      "address": "Jl. Sultan Agung 46 RT.06 RW.03 Kepanjen Malang",
+      "gender": "P",
+      "phone": "089698289699",
+      "placeOfBirth": "New York",
+      "dateOfBirth": "2022-06-15",
+      "disease": "",
+      "handling": ""
+    },
+    {
+      "id": 5,
+      "nik": "3507131606000004",
+      "name": "Hedara Putri",
+      "address": "Jl. Sultan Agung 46 RT.06 RW.03 Kepanjen Malang",
+      "gender": "P",
+      "phone": "089698289699",
+      "placeOfBirth": "New York",
+      "dateOfBirth": "2022-06-15",
+      "disease": "",
+      "handling": ""
+    },
+    {
+      "id": 6,
+      "nik": "3507131606000004",
+      "name": "Alvindo Tri Jatmiko",
+      "address": "4517 Washington Ave. Manchester, Kentucky 39495",
       "gender": "L",
       "phone": "(406) 555-0120",
       "placeOfBirth": "New York",
-      "dateOfBirth": "18/2/70",
-      "disease": "Jantung",
-      "handling": "Rawat Inap"
+      "dateOfBirth": "2022-06-15",
+      "disease": "",
+      "handling": ""
     },
     {
-      "id": 1,
+      "id": 7,
       "nik": "3507131606000004",
-      "name": "Mochammad Syafiuddin",
+      "name": "Abdul Malik Siddiq",
+      "address": "4517 Washington Ave. Manchester, Kentucky 39495",
+      "gender": "L",
+      "phone": "(406) 555-0120",
+      "placeOfBirth": "New York",
+      "dateOfBirth": "2022-06-15",
+      "disease": "",
+      "handling": ""
+    },
+    {
+      "id": 8,
+      "nik": "3507131606000004",
+      "name": "Rizki Firmansyah",
       "address": "Jl. Sultan Agung 46 RT.06 RW.03 Kepanjen Malang",
       "gender": "L",
       "phone": "089698289699",
       "placeOfBirth": "New York",
-      "dateOfBirth": "18/2/70",
-      "disease": "Jantung",
-      "handling": "Rawat Inap"
+      "dateOfBirth": "2022-06-15",
+      "disease": "",
+      "handling": ""
+    },
+    {
+      "id": 9,
+      "nik": "3507131606000004",
+      "name": "Fadwa Nazirah",
+      "address": "Jl. Sultan Agung 46 RT.06 RW.03 Kepanjen Malang",
+      "gender": "P",
+      "phone": "089698289699",
+      "placeOfBirth": "New York",
+      "dateOfBirth": "2022-06-15",
+      "disease": "",
+      "handling": ""
+    },
+    {
+      "id": 10,
+      "nik": "3507131606000004",
+      "name": "Yudha Pamungkas",
+      "address": "4517 Washington Ave. Manchester, Kentucky 39495",
+      "gender": "L",
+      "phone": "(406) 555-0120",
+      "placeOfBirth": "New York",
+      "dateOfBirth": "2022-06-15",
+      "disease": "",
+      "handling": ""
+    },
+    {
+      "id": 11,
+      "nik": "3507131606000004",
+      "name": "Deny Iskandar",
+      "address": "4517 Washington Ave. Manchester, Kentucky 39495",
+      "gender": "L",
+      "phone": "(406) 555-0120",
+      "placeOfBirth": "New York",
+      "dateOfBirth": "2022-06-15",
+      "disease": "",
+      "handling": ""
+    },
+    {
+      "id": 12,
+      "nik": "3507131606000004",
+      "name": "Andiny Nabila",
+      "address": "Jl. Sultan Agung 46 RT.06 RW.03 Kepanjen Malang",
+      "gender": "P",
+      "phone": "089698289699",
+      "placeOfBirth": "New York",
+      "dateOfBirth": "2022-06-15",
+      "disease": "",
+      "handling": ""
+    },
+    {
+      "nik": "12322222",
+      "name": "Saipul",
+      "address": "SULTAN AGUNG NO. 46",
+      "gender": "L",
+      "phone": "0896-9828-9699",
+      "placeOfBirth": "Tangerang",
+      "dateOfBirth": "2022-06-02",
+      "disease": "",
+      "handling": "",
+      "id": 13
     }
   ]
 }

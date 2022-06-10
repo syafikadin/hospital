@@ -17,7 +17,23 @@
                 size="xl"
                 >
                 <form ref="form" @submit.stop.prevent="handleSubmitAddPatient()">
-
+                    
+                    <!-- Input NIK -->
+                    <b-form-group
+                    label="NIK"
+                    label-for="nik-input"
+                    invalid-feedback="NIK is required"
+                    :state="nikState"
+                    >
+                    <b-form-input
+                        id="nik-input"
+                        v-model="form.nik"
+                        :state="nikState"
+                        required
+                    ></b-form-input>
+                    </b-form-group>
+                    
+                    <!-- Input Name -->
                     <b-form-group
                     label="Name"
                     label-for="name-input"
@@ -32,6 +48,7 @@
                     ></b-form-input>
                     </b-form-group>
 
+                    <!-- Input Address -->
                     <b-form-group
                     label="Address"
                     label-for="address-input"
@@ -46,6 +63,42 @@
                     ></b-form-input>
                     </b-form-group>
 
+                    <!-- Input Gender -->
+                    <!-- <b-form-group
+                    label="Gender"
+                    label-for="gender-input"
+                    invalid-feedback="Gender is required"
+                    :state="genderState"
+                    >
+                    <div>
+                        <b-form-select v-model="selected" class="mb-3">
+                        <template #first>
+                            <b-form-select-option :value="null" disabled>-- Please select an option --</b-form-select-option>
+                        </template>
+
+                        <b-form-select-option value="P">P</b-form-select-option>
+                        <b-form-select-option value="L">L</b-form-select-option>
+                        </b-form-select>
+                    </div>
+                    </b-form-group> -->
+
+                    <!-- Input Radio Gender -->
+                    <div>
+                        <b-form-group
+                        label="Jenis Kelamin"
+                        >
+                        <b-form-radio-group
+                            id="btn-radios-2"
+                            v-model="selected"
+                            :options="options"
+                            button-variant="outline-primary"
+                            size="md"
+                            name="radio-btn-outline"
+                            buttons
+                        ></b-form-radio-group>
+                        </b-form-group>
+                    </div>
+                    
                 </form>
                 </b-modal>
             </div>
@@ -53,12 +106,10 @@
             <b-table-simple hover small caption-top responsive class="center">
                 <b-thead>
                     <b-th>ID</b-th>
+                    <b-th>NIK</b-th>
                     <b-th>Nama</b-th>
                     <b-th>Alamat</b-th>
                     <b-th>Jenis Kelamin</b-th>
-                    <b-th>No.Telepon</b-th>
-                    <b-th>Tempat Lahir</b-th>
-                    <b-th>Tanggal Lahir</b-th>
                     <b-th>Jenis Penyakit</b-th>
                     <b-th>Jenis Penanganan</b-th>
                     <b-th>Aksi</b-th>
@@ -69,6 +120,9 @@
                             {{ patient.id }}
                         </b-td>
                         <b-td>
+                            {{ patient.nik }}
+                        </b-td>
+                        <b-td>
                             {{ patient.name }}
                         </b-td>
                         <b-td>
@@ -77,19 +131,16 @@
                         <b-td>
                             {{ patient.gender }}
                         </b-td>
-                        <b-td>
-                            {{ patient.phone }}
+                        <b-td v-if="patient.disease===''">
+                            -
                         </b-td>
-                        <b-td>
-                            {{ patient.placeOfBirth }}
-                        </b-td>
-                        <b-td>
-                            {{ patient.dateOfBirth }}
-                        </b-td>
-                        <b-td>
+                        <b-td v-else>
                             {{ patient.disease }}
                         </b-td>
-                        <b-td>
+                        <b-td v-if="patient.handling===''">
+                            -
+                        </b-td>
+                        <b-td v-else>
                             {{ patient.handling }}
                         </b-td>
                         <b-td>
@@ -152,7 +203,6 @@
                     </b-button>
                 </template>
                 </b-modal>
-
         </div>
 
     </b-container>
@@ -169,15 +219,29 @@ export default {
             editMode: false,
             indexNumber: '',
             form : {
+                nik: '',
                 name: '',
-                address: ''
+                address: '',
+                gender: '',
+                phone: '',
+                placeOfBirth: '',
+                dateOfBirth: '',
+                disease: '',
+                handling: ''
             },
             editForm: {
                 name: '',
                 address: ''
             },
+            nikState: null,
             nameState: null,
             addressState: null,
+            genderState: null,
+            selected: 'laki-laki',
+            options: [
+                { text: 'Laki-laki', value: 'laki-laki' },
+                { text: 'Perempuan', value: 'perempuan' },
+            ]
         }
     },
 
@@ -199,8 +263,6 @@ export default {
             try {
                 await axios.post(`http://localhost:3000/patients`, this.form)
                 this.load()
-                this.form.name = ''
-                this.form.address = ''
             } catch (error) {
                 console.log(error)
             }
@@ -236,18 +298,24 @@ export default {
 
         checkFormValidity() {
             const valid = this.$refs.form.checkValidity()
+            this.nikState = valid
             this.nameState = valid
             this.addressState = valid
+            this.genderState = valid
             return valid
         },
 
         resetModal() {
+            this.form.nik = ''
             this.form.name = ''
             this.form.address = ''
+            this.form.gender = ''
             this.editForm.name = ''
             this.editForm.address = ''
+            this.nikState = null
             this.nameState = null
             this.addressState = null
+            this.genderState = null
         },
 
         handleOkAddPatient(bvModalEvent) {

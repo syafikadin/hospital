@@ -1,7 +1,19 @@
 {
   "patients": [
     {
-      "id": 3,
+      "id": 1,
+      "nik": "3507131606000004",
+      "name": "Mochammad Syafiuddin",
+      "address": "4517 Washington Ave. Manchester, Kentucky 39495",
+      "gender": "P",
+      "phone": "(406) 555-0120",
+      "placeOfBirth": "New York",
+      "dateOfBirth": "2022-06-15",
+      "disease": "",
+      "handling": ""
+    },
+    {
+      "id": 2,
       "nik": "3507131606000004",
       "name": "Jane Cooper",
       "address": "4517 Washington Ave. Manchester, Kentucky 39495",
@@ -11,6 +23,18 @@
       "dateOfBirth": "2022-06-15",
       "disease": "Gigi",
       "handling": "Rawat Jalan"
+    },
+    {
+      "id": 3,
+      "nik": "3507131606000004",
+      "name": "Ainun Rizki Abdillah",
+      "address": "4517 Washington Ave. Manchester, Kentucky 39495",
+      "gender": "P",
+      "phone": "(406) 555-0120",
+      "placeOfBirth": "New York",
+      "dateOfBirth": "2022-06-15",
+      "disease": "",
+      "handling": ""
     },
     {
       "id": 4,
@@ -99,7 +123,7 @@
     {
       "id": 11,
       "nik": "3507131606000004",
-      "name": "Deny Iskandar",
+      "name": "Andiny Nabila",
       "address": "4517 Washington Ave. Manchester, Kentucky 39495",
       "gender": "L",
       "phone": "(406) 555-0120",
@@ -109,28 +133,28 @@
       "handling": ""
     },
     {
-      "id": 12,
-      "nik": "3507131606000004",
-      "name": "Andiny Nabila",
-      "address": "Jl. Sultan Agung 46 RT.06 RW.03 Kepanjen Malang",
+      "nik": "195150607111018",
+      "name": "Data Test Update",
+      "address": "Jonggol",
       "gender": "P",
-      "phone": "089698289699",
-      "placeOfBirth": "New York",
-      "dateOfBirth": "2022-06-15",
-      "disease": "",
-      "handling": ""
-    },
-    {
-      "nik": "12322222",
-      "name": "Saipul",
-      "address": "SULTAN AGUNG NO. 46",
-      "gender": "L",
       "phone": "0896-9828-9699",
-      "placeOfBirth": "Tangerang",
-      "dateOfBirth": "2022-06-02",
+      "placeOfBirth": "Jonggol",
+      "dateOfBirth": "2022-06-30",
       "disease": "",
       "handling": "",
-      "id": 13
+      "id": 14
+    },
+    {
+      "nik": "195150600111018",
+      "name": "Saipul",
+      "address": "Jombang",
+      "gender": "L",
+      "phone": "08888",
+      "placeOfBirth": "Jonggol",
+      "dateOfBirth": "2022-06-28",
+      "disease": "",
+      "handling": "",
+      "id": 15
     }
   ]
 }

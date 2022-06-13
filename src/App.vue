@@ -3,7 +3,9 @@
     <nav class="center">
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link> |
-      <router-link to="/patients">Data Pasien</router-link>
+      <router-link to="/patients">Data Pasien</router-link> |
+      <router-link to="/test">Test Page</router-link> |
+      <router-link to="/vuetify">Vuetify</router-link>
     </nav>
     <router-view/>
   </div>

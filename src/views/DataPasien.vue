@@ -163,7 +163,7 @@
                 size="xl"
             >
                 <form ref="form" @submit.stop.prevent="handleSubmitEditPatient()">
-
+                    <p>Index Number : {{ indexNumber }}</p>
                     <b-form-group
                     label="Name"
                     label-for="name-input"

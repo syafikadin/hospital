@@ -191,7 +191,7 @@
         <b-button 
         v-b-modal.detail-modal-prevent-closing 
         size="sm" 
-        @click="getIndex(row.index)" 
+        @click="getIndex(row.item)" 
         class="mr-1">
           Detail
         </b-button>
@@ -205,13 +205,13 @@
     title="Detail Data Pasien Rawat Jalan"
     @show="resetModal"
     @hidden="resetModal"
-    @ok="handleOkAddPatient"
+    @ok="handleOkEditPatient"
     size="xl"
     >
 
     <!-- Detail View Mode -->
       <p>Index Number : {{ indexNumber }}</p>
-      <p>Edit Mode : {{ editMode }}</p>
+      <p>NIK : {{ this.detailPatient.nik }}</p>
       <form v-if="editMode === false" ref="form" @submit.stop.prevent="handleSubmitAddPatient()">
       <!-- Input NIK -->
       <b-form-group
@@ -448,7 +448,12 @@
       </form>
 
     <template #modal-footer="{ ok }">
-      <b-button v-if="editMode === false" size="lg" variant="secondary" @click="changeEditMode()">
+      <b-button 
+      v-if="editMode === false"
+      v-b-modal.detail-modal-prevent-closing 
+      size="lg" 
+      variant="secondary" 
+      @click="changeEditMode()">
           Edit
       </b-button>
       <b-button v-else size="lg" variant="danger" @click="deletePatient(indexNumber)">
@@ -479,6 +484,7 @@
 import axios from 'axios'
 
   export default {
+    name: 'VuetifyPage',
     data() {
       return {
         patients: [],
@@ -498,8 +504,13 @@ import axios from 'axios'
           handling: ''
         },
         editForm: {
+            nik: '',
             name: '',
-            address: ''
+            address: '',
+            gender:'',
+            phone: '',
+            placeOfBirth: '',
+            dateOfBirth: '',
         },
         nikState: null,
         nameState: null,
@@ -540,8 +551,8 @@ import axios from 'axios'
     },
 
     methods: {
-      testIndex(index) {
-        console.log(index)
+      testIndex(item) {
+        console.log(this.detailPatient.indexOf(item))
       },
       info(item, index, button) {
         this.infoModal.title = `Row index: ${index}`
@@ -567,8 +578,8 @@ import axios from 'axios'
         },
 
         getIndex(item) {
-          this.indexNumber = item
-          this.detailPatient = this.patients[this.indexNumber]
+            this.indexNumber = this.patients.indexOf(item)
+            this.detailPatient = this.patients[this.indexNumber]
         },
 
         async addPatient() {
@@ -579,7 +590,6 @@ import axios from 'axios'
               console.log(error)
           }
         },
-
         async deletePatient(indexId) {
             if (confirm('Apakah Anda Akan Menghapus Data Ini?') == true) {
                 try {
@@ -591,18 +601,25 @@ import axios from 'axios'
             }
             this.$nextTick(() => {
                 this.$bvModal.hide('detail-modal-prevent-closing')
+                this.editMode = false
             })
         },
 
         async updatePatient() {
+            this.indexNumber = this.indexNumber + 1
             try {
                 await axios.put(`http://localhost:3000/patients/` + this.indexNumber, {
-                    name: this.editForm.name,
-                    address: this.editForm.address
+                    nik: this.detailPatient.nik,
+                    name: this.detailPatient.name,
+                    address: this.detailPatient.address,
+                    gender: this.detailPatient.gender,
+                    phone: this.detailPatient.phone,
+                    placeOfBirth: this.detailPatient.placeOfBirth,
+                    dateOfBirth: this.detailPatient.dateOfBirth,
+                    disease: this.detailPatient.disease,
+                    handling: this.detailPatient.handling
                 })
                 this.load()
-                this.editForm.name = ''
-                this.editForm.address = ''
             } catch (error) {
                 console.log(error)
             }
@@ -629,9 +646,6 @@ import axios from 'axios'
           this.form.placeOfBirth = ''
           this.form.dateOfBirth = ''
 
-          this.editForm.name = ''
-          this.editForm.address = ''
-
           this.nikState = null
           this.nameState = null
           this.addressState = null
@@ -639,6 +653,15 @@ import axios from 'axios'
           this.phoneState = null
           this.placeOfBirthState = null
           this.dateOfBirthState = null
+        },
+
+        selectionHandeOk(){
+            if (this.editMode === false) {
+                this.handleOkAddPatient()
+            } else {
+                this.handleOkEditPatient()
+            }
+            this.editMode = false
         },
 
         handleOkAddPatient(bvModalEvent) {
@@ -676,7 +699,7 @@ import axios from 'axios'
             this.indexNumber = ''
             // Hide the modal manually
             this.$nextTick(() => {
-                this.$bvModal.hide('edit-modal-prevent-closing')
+                this.$bvModal.hide('detail-modal-prevent-closing')
             })
         },
         changeEditMode() {

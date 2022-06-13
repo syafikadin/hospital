@@ -2,6 +2,8 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import DataPasien from '../views/DataPasien.vue'
+import TestView from '../views/TestView.vue'
+import Vuetify from '../views/Vuetify.vue'
 
 Vue.use(VueRouter)
 
@@ -23,6 +25,16 @@ const routes = [
     path: '/patients',
     name: 'datapasien',
     component: DataPasien
+  },
+  {
+    path: '/test',
+    name: 'test',
+    component: TestView
+  },
+  {
+    path: '/vuetify',
+    name: 'vuetify',
+    component: Vuetify
   },
 ]
 

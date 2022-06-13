@@ -133,25 +133,13 @@
       "handling": ""
     },
     {
-      "nik": "195150607111018",
-      "name": "Data Test Update",
-      "address": "Jonggol",
-      "gender": "P",
-      "phone": "0896-9828-9699",
-      "placeOfBirth": "Jonggol",
-      "dateOfBirth": "2022-06-30",
-      "disease": "",
-      "handling": "",
-      "id": 14
-    },
-    {
       "nik": "195150600111018",
-      "name": "Saipul",
+      "name": "Change",
       "address": "Jombang",
       "gender": "L",
-      "phone": "08888",
+      "phone": "08100",
       "placeOfBirth": "Jonggol",
-      "dateOfBirth": "2022-06-28",
+      "dateOfBirth": "2019-06-28",
       "disease": "",
       "handling": "",
       "id": 15

@@ -211,7 +211,8 @@
 
     <!-- Detail View Mode -->
       <p>Index Number : {{ indexNumber }}</p>
-      <p>NIK : {{ this.detailPatient.nik }}</p>
+      <p>Detail Patient : {{ detailPatient }}</p>
+      <p>Index Delete : {{ indexSelected }}</p>
       <form v-if="editMode === false" ref="form" @submit.stop.prevent="handleSubmitAddPatient()">
       <!-- Input NIK -->
       <b-form-group
@@ -456,7 +457,7 @@
       @click="changeEditMode()">
           Edit
       </b-button>
-      <b-button v-else size="lg" variant="danger" @click="deletePatient(indexNumber)">
+      <b-button v-else size="lg" variant="danger" @click="deletePatient(indexSelected)">
           Delete
       </b-button>
       <b-button size="lg" variant="success" @click="ok()">
@@ -491,7 +492,7 @@ import axios from 'axios'
         detailPatient: [],
         editMode: false,
         indexNumber: '',
-        indexDelete: '',
+        indexSelected: '',
         form : {
           nik: '',
           name: '',
@@ -527,7 +528,7 @@ import axios from 'axios'
 
         items: [],
         fields: [
-          { key: 'id', label: 'No'},
+          { key: 'id', label: 'ID'},
           { key: 'nik', label: 'NIK'},
           { key: 'name', label: 'Nama'},
           { key: 'address', label: 'Alamat'},
@@ -580,6 +581,7 @@ import axios from 'axios'
         getIndex(item) {
             this.indexNumber = this.patients.indexOf(item)
             this.detailPatient = this.patients[this.indexNumber]
+            this.indexSelected = this.detailPatient.id
         },
 
         async addPatient() {
@@ -606,9 +608,8 @@ import axios from 'axios'
         },
 
         async updatePatient() {
-            this.indexNumber = this.indexNumber + 1
             try {
-                await axios.put(`http://localhost:3000/patients/` + this.indexNumber, {
+                await axios.put(`http://localhost:3000/patients/` + this.indexSelected, {
                     nik: this.detailPatient.nik,
                     name: this.detailPatient.name,
                     address: this.detailPatient.address,
